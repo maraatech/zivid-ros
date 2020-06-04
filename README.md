@@ -1,6 +1,6 @@
 # Zivid ROS driver
 
-This is the official ROS driver for [Zivid 3D cameras](https://www.zivid.com/).
+This is a fork the official ROS driver for [Zivid 3D cameras](https://www.zivid.com/) with the URDF of the Zivid camera added. Will be used until the official Zivid package supports the URDF.
 
 [![Build Status][ci-badge]][ci-url]
 
