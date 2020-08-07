@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+	  <node name="zivid_camera" pkg="zivid_camera" type="zivid_camera_node" ns="zivid_camera" output="screen">
+	    <param name="use_save"       value="false"/>
+  	    <param name="save_directory" value=""/>
+	  </node>
+	  <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+</launch>
