@@ -49,6 +49,18 @@ An OpenCL 1.2 compatible GPU and OpenCL driver is required by the Zivid SDK. Fol
 [this guide](https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/426519/Install+OpenCL+drivers+on+Ubuntu) to
 install OpenCL drivers for your system.
 
+The current zivid driver uses SDK version of 1.8. Follow these instructions:
+```bash
+#download zivid sdk
+wget http://www.zivid.com/hubfs/softwarefiles/releases/1.8.1+6967bc1b-1/u18/zivid-telicam-driver_3.0.1.1-1_amd64.deb
+wget http://www.zivid.com/hubfs/softwarefiles/releases/1.8.1+6967bc1b-1/u18/zivid_1.8.1+6967bc1b-1_amd64.deb
+wget http://www.zivid.com/hubfs/softwarefiles/releases/1.8.1+6967bc1b-1/u18/zivid-studio_1.8.1+6967bc1b-1_amd64.deb
+#install 
+sudo dpkg install zivid-telicam-driver_3.0.1.1-1_amd64.deb
+sudo dpkg install zivid_1.8.1+6967bc1b-1_amd64.deb
+sudo dpkg install zivid-studio_1.8.1+6967bc1b-1_amd64.deb
+```
+
 ### C++ compiler
 
 A C++17 compiler is required.
