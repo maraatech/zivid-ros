@@ -112,5 +112,7 @@ private:
   Zivid::Camera camera_;
   std::string frame_id_;
   unsigned int header_seq_;
+  bool use_save_;
+  std::string save_directory_;
 };
 }  // namespace zivid_camera

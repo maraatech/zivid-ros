@@ -210,6 +210,26 @@ ZividCamera::ZividCamera(ros::NodeHandle& nh, ros::NodeHandle& priv)
   capture_2d_service_ = nh_.advertiseService("capture_2d", &ZividCamera::capture2DServiceHandler, this);
   capture_assistant_suggest_settings_service_ = nh_.advertiseService(
       "capture_assistant/suggest_settings", &ZividCamera::captureAssistantSuggestSettingsServiceHandler, this);
+  //read frame save param --chris
+  if(nh.getParam("/camera/zivid_camera/zivid_camera/use_save", use_save_)){
+    if(use_save_ == true){
+      ROS_INFO("save mode enabled");
+      bool read_param_ok = nh.getParam("/camera/zivid_camera/zivid_camera/save_directory", save_directory_);
+      ROS_INFO("saving to path");
+      ROS_INFO(save_directory_.c_str());
+      if(!read_param_ok){
+        //throw error
+        //ROS_ERROR("DIRECTORY PATH FOR SAVING FILE NOT DEFINED");
+        throw std::runtime_error("DIRECTORY PATH FOR SAVING FILE NOT DEFINED");
+      }
+    }else{
+      ROS_INFO("save mode disabled");
+      use_save_ = false;
+    }
+  }else{
+    ROS_INFO("Save mode not set. Save mode disabled");
+    use_save_ = false;
+  }
 
   ROS_INFO("Zivid camera driver is now ready!");
 }
@@ -479,6 +499,17 @@ void ZividCamera::publishFrame(Zivid::Frame&& frame)
       {
         ROS_DEBUG("Publishing depth image");
         depth_image_publisher_.publish(makeDepthImage(header, point_cloud), camera_info);
+      }
+
+      if(use_save_)
+      {
+        time_t now = time(0);
+        // convert now to string form
+        char* dt = ctime(&now);
+        std::stringstream ss;
+        ss << dt;
+        std::cout<<save_directory_<<"image0.zdf"<<std::endl;
+        frame.save("image0.zdf");
       }
     }
   }
